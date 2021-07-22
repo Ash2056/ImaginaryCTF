@@ -1,0 +1,45 @@
+$ gdb mission -q
+Reading symbols from mission...
+(No debugging symbols found in mission)
+(gdb) i fun                                 <-- GDB can sometimes display function names from a binary
+All defined functions:
+
+Non-debugging symbols:
+0x0000000000001000  _init
+0x0000000000001030  putchar@plt
+0x0000000000001040  unlink@plt
+0x0000000000001050  puts@plt
+0x0000000000001060  fclose@plt
+0x0000000000001070  system@plt
+0x0000000000001080  fopen@plt
+0x0000000000001090  sprintf@plt
+0x00000000000010a0  fwrite@plt
+0x00000000000010b0  tmpnam@plt
+0x00000000000010c0  sleep@plt
+0x00000000000010d0  __cxa_finalize@plt
+0x00000000000010e0  _start
+0x0000000000001110  deregister_tm_clones
+0x0000000000001140  register_tm_clones
+0x0000000000001180  __do_global_dtors_aux
+0x00000000000011c0  frame_dummy
+0x00000000000011c5  selfDestruct            <-- this sounds dangerous :(
+0x00000000000012a2  zzzAVerySecretMessage   <-- this sounds interesting!
+0x0000000000001443  main
+0x0000000000001480  __libc_csu_init
+0x00000000000014e0  __libc_csu_fini
+0x00000000000014e4  _fini
+(gdb) b main                                <-- we need to get the program to give control back to gdb early
+Breakpoint 1 at 0x1447
+(gdb) r
+Starting program: ./mission
+
+Breakpoint 1, 0x0000000008001447 in main ()
+(gdb) print (int) zzzAVerySecretMessage()   <-- calling functions arbitrarily from GDB! Amazing!
+ictf{n3v3r_run_@_bin@ry_y0u_d0nt_+ru5t!}
+$1 = 10
+(gdb) quit
+A debugging session is active.
+
+        Inferior 1 [process 13147] will be killed.
+
+Quit anyway? (y or n) EOF [assumed Y]

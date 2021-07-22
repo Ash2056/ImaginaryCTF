@@ -1,0 +1,10 @@
+b checkFlag
+r < <(echo 'ictf{')
+py import sys; sys.path.append("..")
+py import base, gdb
+py flg = gdb.parse_and_eval("&flg")
+py checkFlag = gdb.parse_and_eval("checkFlag")
+py i = gdb.inferiors()[0]
+py flg_data = i.read_memory(int(str(flg).split()[0], 0), 49)
+py checkFlag_data = i.read_memory(int(str(checkFlag).split()[-2], 0), 49)
+py print(base.xor(flg_data.tobytes(), checkFlag_data.tobytes()).decode())

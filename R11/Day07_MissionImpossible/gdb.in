@@ -1,0 +1,5 @@
+i fun
+b main
+r
+print (int) zzzAVerySecretMessage()
+print (int) fflush(stdout)

