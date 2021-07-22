@@ -1,0 +1,10 @@
+/2021
+/ChallDev
+/ictf.gpr
+/ictf.rep
+/.idea
+/transcript-*
+__pycache__/
+*/__pycache__/
+*/*/sols/
+/apikey*
