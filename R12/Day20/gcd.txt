@@ -1,0 +1,12 @@
+readint [0]
+readint [1]
+gcd:
+# r1 contains the index of memory at which the next two arguments are stored
+mov r10, [r1]
+add r1, r1, 1
+add r2, r1, 1
+jz [r1], done
+mod [r2], r10, [r1]
+j gcd
+done:
+pr r10

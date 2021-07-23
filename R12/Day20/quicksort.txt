@@ -1,0 +1,77 @@
+
+# length of arr
+readint r15
+readarr:
+readint [r14]
+add r14, r14, 1
+jl r14, r15, readarr
+mov r3, r15
+
+# array is now at [0] thru [r15]
+# quicksort? using [r1] and [r3] as [start, end), and [r15] thru [r14] as argstack
+
+quicksort:
+# set local r2 as pivot, from middle of arr
+
+add r2, r1, r3
+div r2, r2, 2
+mov r2, [r2]
+
+# initialize copies of r1, r3
+
+sub r4, r1, 1
+mov r6, r3
+
+# Hoare partition
+add_start:
+add r4, r4, 1
+jl [r4], r2, add_start
+
+sub_end:
+sub r6, r6, 1
+jl r2, [r6], sub_end
+
+jl r4, r6, swap_r4_r6
+# return r4 as mid
+j quicksort_return
+
+# swap r4, r6
+swap_r4_r6:
+#debug "before swap"
+
+mov r5, [r6]
+mov [r6], [r4]
+mov [r4], r5
+j add_start
+
+quicksort_return:
+#debug "round"
+
+# add [start, mid) to arg stack
+mov [r14], r1
+add r14, r14, 1
+mov [r14], r4
+add r14, r14, 1
+
+# [mid, end) are possible next args
+mov r1, r4
+# move r3, r3
+
+# process argstack
+check_args:
+sub r2, r3, r1
+jl 1, r2, quicksort
+pop_argstack:
+sub r14, r14, 1
+jl r14, r15, printarr
+mov r3, [r14]
+sub r14, r14, 1
+mov r1, [r14]
+j check_args
+
+printarr:
+pr [r13]
+pr " "
+add r13, r13, 1
+jl r13, r15, printarr
+

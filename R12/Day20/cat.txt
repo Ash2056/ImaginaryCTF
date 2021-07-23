@@ -1,0 +1,10 @@
+intstr r10, 10
+main:
+readstr r1
+xor r2, "exit", r1
+strint r2, r2
+jz r2, exit
+pr r1
+pr r10
+j main
+exit:
